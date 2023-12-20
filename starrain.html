@@ -67,9 +67,10 @@
 
         let flg = false;
         let flgkp = true;
+        let nflg = false;
 
         let count = 0.01;
-        let counter = Math.PI / 180;
+        let counter = Math.PI / 180 * 5;
 
 
 
@@ -183,6 +184,41 @@
         markerRoot.add(rain11);
         markerRoot.add(rain12);
 
+        var sflg = false;
+        var sflg2 = false;
+        var sflg3 = false;
+
+        const listener = new THREE.AudioListener();
+        camera.add(listener);
+        const AudioLoader = new THREE.AudioLoader();
+        const starSound = new THREE.Audio(listener);
+        AudioLoader.load('./SE.mp3', function (buffer) {
+            starSound.setBuffer(buffer);
+            starSound.setLoop(true);
+            starSound.setVolume(0.5);
+        });
+
+        const star2Sound = new THREE.Audio(listener);
+        AudioLoader.load('./SE.mp3', function (buffer) {
+            star2Sound.setBuffer(buffer);
+            star2Sound.setLoop(true);
+            star2Sound.setVolume(0.5);
+        });
+
+        const star3Sound = new THREE.Audio(listener);
+        AudioLoader.load('./SE.mp3', function (buffer) {
+            star3Sound.setBuffer(buffer);
+            star3Sound.setLoop(true);
+            star3Sound.setVolume(0.5);
+        });
+
+        const nijiSound = new THREE.Audio(listener);
+        AudioLoader.load('./niji.mp3', function (buffer) {
+            nijiSound.setBuffer(buffer);
+            nijiSound.setLoop(false);
+            nijiSound.setVolume(0.5);
+        });
+
         function animate() {
             requestAnimationFrame(animate);
             if (flg == false) {
@@ -222,13 +258,27 @@
                 rain11.rotation.z += Math.PI / 180;
                 rain12.rotation.x += Math.PI / 180;
                 rain12.rotation.z += Math.PI / 180;
+                if (rain1.position.z > -2 && sflg == false) {
+                    starSound.play();
+                    sflg = true;
+                }
+                if (rain8.position.z > 1 && sflg2 == false) {
+                    star2Sound.play();
+                    sflg2 = true;
+                }
+                if (rain3.position.z > -1 && sflg3 == false) {
+                    star3Sound.play();
+                    sflg3 = true;
+                }
                 if (rain1.position.z > 4) {
+
                     rain1.position.z = -2;
                 }
                 if (rain2.position.z > 4) {
                     rain2.position.z = -2;
                 }
                 if (rain3.position.z > 4) {
+
                     rain3.position.z = -2;
                 }
                 if (rain4.position.z > 4) {
@@ -244,6 +294,7 @@
                     rain7.position.z = -2;
                 }
                 if (rain8.position.z > 4) {
+
                     rain8.position.z = -2;
                 }
                 if (rain9.position.z > 4) {
@@ -336,11 +387,19 @@
 
             }
             if (flg == true && flgkp == false) {
+                starSound.stop();
+                star2Sound.stop();
+                star3Sound.stop();
                 if (kumo.position.x < 4) {
                     kumo.position.x += 0.025
                     kumo.position.z -= 0.0125;
                 }
                 if (kumo.position.x >= 4) {
+                    if (nflg == false) {
+                        nijiSound.play();
+                        nflg = true;
+                    }
+
                     const radius1 = 1;
                     const tube1 = 0.05;
                     const radialSegments = 30;
@@ -410,6 +469,7 @@
 
                     count += counter;
                     if (count >= Math.PI) {
+
                         count = 0;
                     }
                 }
