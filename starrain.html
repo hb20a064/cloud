@@ -198,6 +198,7 @@
             starSound.setBuffer(buffer);
             starSound.setLoop(true);
             starSound.setVolume(0.5);
+            starSound.play();
         });
 
         const star2Sound = new THREE.Audio(listener);
@@ -205,6 +206,7 @@
             star2Sound.setBuffer(buffer);
             star2Sound.setLoop(true);
             star2Sound.setVolume(0.5);
+            star2Sound.play();
         });
 
         const star3Sound = new THREE.Audio(listener);
@@ -212,6 +214,7 @@
             star3Sound.setBuffer(buffer);
             star3Sound.setLoop(true);
             star3Sound.setVolume(0.5);
+            star3Sound.play();
         });
 
         const nijiSound = new THREE.Audio(listener);
@@ -224,15 +227,15 @@
         function animate() {
             requestAnimationFrame(animate);
             if (sflg == false) {
-                starSound.play();
+                
                 sflg = true;
                 }
             if (sflg2 == false) {
-                star2Sound.play();
+                
                 sflg2 = true;
                 }
             if (sflg3 == false) {
-                star3Sound.play();
+                
                 sflg3 = true;
                 }
             if (flg == false) {
