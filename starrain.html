@@ -65,13 +65,13 @@
         directionalLight.position.set(1, 0, 1);
         scene.add(directionalLight);
 
-        let flg = false;
-        let flgkp = true;
-        let nflg = false;
+        var flg = false;
+        var flgkp = true;
+        var nflg = false;
 
-        let sflg = false;
-        let sflg2 = false;
-        let sflg3 = false;
+        var sflg = false;
+        var sflg2 = false;
+        var sflg3 = false;
 
         let count = 0.01;
         let counter = Math.PI / 180 * 5;
@@ -224,16 +224,16 @@
         function animate() {
             requestAnimationFrame(animate);
             if (sflg == false) {
-                    starSound.play();
-                    sflg = true;
+                starSound.play();
+                sflg = true;
                 }
-                if (sflg2 == false) {
-                    star2Sound.play();
-                    sflg2 = true;
+            if (sflg2 == false) {
+                star2Sound.play();
+                sflg2 = true;
                 }
-                if (sflg3 == false) {
-                    star3Sound.play();
-                    sflg3 = true;
+            if (sflg3 == false) {
+                star3Sound.play();
+                sflg3 = true;
                 }
             if (flg == false) {
                 rain1.position.z += 0.2 / 10;
