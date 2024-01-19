@@ -69,6 +69,10 @@
         let flgkp = true;
         let nflg = false;
 
+        let sflg = false;
+        let sflg2 = false;
+        let sflg3 = false;
+
         let count = 0.01;
         let counter = Math.PI / 180 * 5;
 
@@ -184,9 +188,7 @@
         markerRoot.add(rain11);
         markerRoot.add(rain12);
 
-        var sflg = false;
-        var sflg2 = false;
-        var sflg3 = false;
+        
 
         const listener = new THREE.AudioListener();
         camera.add(listener);
@@ -221,6 +223,18 @@
 
         function animate() {
             requestAnimationFrame(animate);
+            if (sflg == false) {
+                    starSound.play();
+                    sflg = true;
+                }
+                if (sflg2 == false) {
+                    star2Sound.play();
+                    sflg2 = true;
+                }
+                if (sflg3 == false) {
+                    star3Sound.play();
+                    sflg3 = true;
+                }
             if (flg == false) {
                 rain1.position.z += 0.2 / 10;
                 rain2.position.z += 0.33 / 10;
@@ -258,18 +272,7 @@
                 rain11.rotation.z += Math.PI / 180;
                 rain12.rotation.x += Math.PI / 180;
                 rain12.rotation.z += Math.PI / 180;
-                if (sflg == false) {
-                    starSound.play();
-                    sflg = true;
-                }
-                if (sflg2 == false) {
-                    star2Sound.play();
-                    sflg2 = true;
-                }
-                if (sflg3 == false) {
-                    star3Sound.play();
-                    sflg3 = true;
-                }
+                
                 if (rain1.position.z > 4) {
 
                     rain1.position.z = -2;
