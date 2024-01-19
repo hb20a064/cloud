@@ -226,20 +226,8 @@
 
         function animate() {
             requestAnimationFrame(animate);
-            if (kumo.position.x < 4 && sflg == false) {
-                starSound.play();
-                console.log("hi");
-                sflg = true;
-                }
-            if (kumo.position.x < 4 && sflg2 == false) {
-                star2Sound.play();
-                sflg2 = true;
-                }
-            if (kumo.position.x < 4 && sflg3 == false) {
-                star3Sound.play();
-                sflg3 = true;
-                }
-            if (flg == false) {
+            
+            if (sflg ==  true  && sflg2 ==  true  && sflg3 ==  true && flg == false) {
                 rain1.position.z += 0.2 / 10;
                 rain2.position.z += 0.33 / 10;
                 rain3.position.z += 0.14 / 10;
@@ -487,6 +475,22 @@
         animate();
 
         window.addEventListener("mousedown", function (ret) {
+            if(sflg ==  true  && sflg2 ==  true  && sflg3 ==  true){
+                flg = true;
+            }
+            if (sflg == false) {
+                starSound.play();
+                
+                sflg = true;
+                }
+            if (sflg2 == false) {
+                star2Sound.play();
+                sflg2 = true;
+                }
+            if (sflg3 == false) {
+                star3Sound.play();
+                sflg3 = true;
+                }
             let mouseX = ret.clientX;                           // マウスのx座標
             let mouseY = ret.clientY;                           // マウスのy座標
             //console.log(mouseX + " : " + mouseY);
@@ -497,7 +501,7 @@
             // レイキャスタを作成（始点, 向きのベクトル）
             let ray = new THREE.Raycaster(camera.position, pos.sub(camera.position).normalize());
             let obj = ray.intersectObjects(scene.children, true);   // レイと交差したオブジェクトの取得
-            flg = true;
+            
             if (obj.length > 0) {                                // 交差したオブジェクトがあれば
                 // picked(obj[0].object.name);                       // ピックされた対象に応じた処理を実行
                 // console.log(obj[0].object.name)
